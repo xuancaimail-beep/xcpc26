@@ -4,7 +4,7 @@ using namespace std;
 const int mod = 998244353; 
 const int G = 3; 
 const int g = 332748118;
-const int N = 1000;
+const int N = 1025;
 int l; int tot; 
 vector<int> jie(N), inv(N);
 vector<int> rev; 
@@ -40,19 +40,21 @@ void NTT(vector<int> &c, int inv)
 
 signed main(){
     jie[0] = 1; inv[0] = qpow(1, mod - 2); 
-    for(int i = 1; i <= 1e6; i++){
+    for(int i = 1; i <= 1024; i++){
         jie[i] = jie[i - 1] * i % mod;
         inv[i] = qpow(jie[i], mod - 2); 
     }
     int n, m; cin >> n >> m;
-    l = (1 << 9); //512
-    int tot = l; 
-    int bit = 9; 
+    l = (1 << 10); //512
+    tot = l; 
+    int bit = 10; 
     int linv = qpow(l, mod - 2); 
     vector<int> a(l);
     rev.resize(l); 
     for(int i= 0; i < l; i++) rev[i] = ( rev[i>>1] >>1 ) | ( (i & 1) << ( bit - 1) );
-    for(int i = 1; i <= m; i++) {
+    a[0] = 1;
+    a[1] = 1;
+    for(int i = 2; i <= m; i++) {
         vector<int> cur(l);
         for(int j = 0; j <= i; j++){
             cur[j] = inv[j];
@@ -64,8 +66,11 @@ signed main(){
             c[j] = a[j] * cur[j]  % mod ;    
         }
         NTT(c, -1); 
-        for(int j = 0; j < l; j++){
+        for(int j = 0; j <= n; j++){
             c[j] = c[j] * linv % mod; 
+        }
+        for(int j = n + 1; j < l; j++){
+            c[j] = 0; 
         }
         a = c; 
     }
