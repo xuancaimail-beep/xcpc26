@@ -19,19 +19,19 @@ T Inv(T x){
     return fastpow(x, mod - 2);
 }
 
-void NTT(vector<T> &c, int inv)
+void NTT(vector<int> &c, int inv)
 {
     for (int i = 0; i < tot; i++){
         if (i < rev[i]) swap(c[i], c[rev[i]]);
     }
     for (int mid = 1; mid < tot; mid <<= 1){  // 枚举每个子问题的mid
-        T w1 = fastpow(G, (mod - 1) / (mid << 1)); // g^{(mod-1)/N}
+        int w1 = fastpow(G, (mod - 1) / (mid << 1)); // g^{(mod-1)/N}
         if(!(~inv))
             w1 = fastpow(w1, mod - 2); // 如果是逆变换,要在指数上变负号
-        for(T i = 0, len = mid << 1; i < tot; i += len){
-            T wk = 1;
-            for (T j = 0; j < mid; j++, wk = (wk * w1) % mod){ // 处理一半足矣
-                T x = c[i + j], y = wk * c[i + j + mid] % mod;
+        for(int i = 0, len = mid << 1; i < tot; i += len){
+            int wk = 1;
+            for (int j = 0; j < mid; j++, wk = (wk * w1) % mod){ // 处理一半足矣
+                int x = c[i + j], y = wk * c[i + j + mid] % mod;
                 c[i + j] = (x + y) % mod;
                 c[i + j + mid] = (x - y + mod) % mod;
             }
@@ -73,3 +73,4 @@ signed main()
         cout << (ll) (conv[i] * _tot % mod) << " "; 
     }
 }
+

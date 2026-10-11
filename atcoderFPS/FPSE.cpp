@@ -74,5 +74,13 @@ signed main(){
         }
         a = c; 
     }
-    cout << a[n] * jie[n]  % mod; 
+    cout << a[n] * jie[n] % mod; 
 }
+
+
+/*
+fft和ntt实现的注意事项：
+如果需要前n项有效的话，需要开2n的空间
+每次卷积前都要保证a(n)和b(n)有效，把无效的值为0 得到c(2n)，然后再把n到2n置零
+我的ntt代码卷积完以后要除l, fft不知道
+*/
