@@ -18,6 +18,7 @@ vector<int> inv(1e6 + 10);
 void solve(){
     jie[0] = 1; inv[0] = qpow(1, mod - 2); 
     int N; cin >> N; 
+    
     int ans = qpow(3, N); 
     if(N % 2 == 0) ans--; 
     else ans++; 
