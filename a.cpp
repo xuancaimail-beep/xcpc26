@@ -1,0 +1,60 @@
+
+找 >= x的最小值
+特殊的
+n + 1  -> 未找到
+signed main(){
+    int n; cin >> n; 
+    vector<int> a(n + 1); 
+    for(int i = 1; i <= n; i++){
+        cin >> a[i]; 
+    }
+
+    int x; cin >> x;    
+    int pos = lower_bound(a.begin() + 1, a.end(), x) - a.begin(); 
+    if(pos == n + 1) cout << "不存在";
+    else cout << pos << "\n";     
+}
+
+找 > x的最小值
+特殊的
+signed main(){
+    int n; cin >> n; 
+    vector<int> a(n + 1); 
+    for(int i = 1; i <= n; i++){
+        cin >> a[i]; 
+    }
+    int x; cin >> x; 
+    int pos = upper_bound(a.begin() + 1, a.end(), x) - a.begin(); 
+    if(pos == n + 1) cout << "不存在";
+    else cout << pos << "\n";     
+}
+
+
+找 < x 最大值
+signed main(){
+    int n; cin >> n; 
+    vector<int> a(n + 1); 
+    for(int i = 1; i <= n; i++){
+        cin >> a[i]; 
+    }
+
+    int x; cin >> x; 
+    int pos = lower_bound(a.begin() + 1, a.end(), x) - a.begin() - 1; 
+    if(pos == 0) {cout << "不存在";}
+    else cout << pos << "\n"; 
+}
+
+
+找 <= x 最大值
+signed main(){
+    int n; cin >> n; 
+    vector<int> a(n + 1); 
+    for(int i = 1; i <= n; i++){
+        cin >> a[i]; 
+    }
+
+    int x; cin >> x; 
+    int pos = upper_bound(a.begin() + 1, a.end(), x) - a.begin() - 1; 
+    if(pos == 0) {cout << "不存在";}
+    else cout << pos << "\n"; 
+}

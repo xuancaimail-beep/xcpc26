@@ -408,6 +408,30 @@ auto split(int p)
  };
 ```
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## 可持久化线段树
 
 ```cpp
@@ -1410,12 +1434,6 @@ vector<Point> convex_hull(vector<Point> p){
     return st; 
 }
 ```
-
-
-
-
-
-
 
 ## 半平面交
 
@@ -2558,11 +2576,9 @@ T fastpow(T a, T b){
     }
     return res;
 }
-
 T Inv(T x){
     return fastpow(x, mod - 2);
 }
-
 void NTT(vector<T> &c, int inv)
 {
     for (int i = 0; i < tot; i++){
